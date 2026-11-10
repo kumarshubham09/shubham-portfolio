@@ -43,6 +43,7 @@ const paths = {
   download: <path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" />,
   arrow: <path d="M7 17 17 7M9 7h8v8" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  check: <path d="m5 12.5 4.5 4.5L19 7.5" />,
   chevronLeft: <path d="m15 18-6-6 6-6" />,
   chevronRight: <path d="m9 18 6-6-6-6" />,
   sun: (

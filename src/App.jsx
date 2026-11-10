@@ -9,6 +9,7 @@ import Achievements from './components/Achievements';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Cursor from './components/Cursor';
 
 // Section order reference design (resumeq.framer.website) jaisa rakha hai:
 // Hero -> Numbers -> Experience -> Projects -> Education -> Skills -> Reviews -> FAQ -> Contact
@@ -32,6 +33,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <Cursor />
     </>
   );
 }

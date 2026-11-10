@@ -1,6 +1,7 @@
 import { experience } from '../data';
 import Reveal from './Reveal';
 import SectionTitle from './SectionTitle';
+import Icon from './Icon';
 
 // Period "March 2025 – Present" ko year range mein badalta hai
 function years(period) {
@@ -53,6 +54,42 @@ export function TimelineCard({ item, delay }) {
   );
 }
 
+// Education card: reoporto.framer.website ke Services card jaisa
+// (orange number + icon box, title, description, divider, check list)
+function EducationCard({ item, index, delay }) {
+  const { from, to } = years(item.period);
+  const focus = (item.points ?? []).find((p) => /^(Key focus|Core foundations):/.test(p));
+  const subjects = focus ? focus.replace(/^[^:]+:\s*/, '').replace(/\.$/, '').split(/,\s*/) : [];
+  return (
+    <Reveal delay={delay} className="edu-card">
+      <div className="edu-top">
+        <span className="edu-num">{String(index + 1).padStart(2, '0')}</span>
+        <span className="edu-icon" aria-hidden="true">
+          <Icon name="cap" size={18} />
+        </span>
+      </div>
+      <div>
+        <h3>{item.title}</h3>
+        <p className="edu-org">
+          {item.org}, {item.location}
+        </p>
+      </div>
+      <p className="edu-meta">
+        {from} – {to} · {item.grade}
+      </p>
+      <hr className="edu-rule" />
+      <ul className="edu-list">
+        {subjects.map((s) => (
+          <li key={s}>
+            <Icon name="check" size={14} />
+            {s}
+          </li>
+        ))}
+      </ul>
+    </Reveal>
+  );
+}
+
 // children (Projects) Experience aur Education ke beech render hota hai
 export default function Experience({ children }) {
   const work = experience.filter((e) => e.type === 'work');
@@ -90,9 +127,9 @@ export default function Experience({ children }) {
             count={`${edu.length} degrees`}
             note="MCA and BCA, with a focus on web architecture, OOP and DSA."
           />
-          <div className="stack">
+          <div className="edu-grid">
             {edu.map((item, i) => (
-              <TimelineCard key={item.title} item={item} delay={i * 80} />
+              <EducationCard key={item.title} item={item} index={i} delay={i * 80} />
             ))}
           </div>
         </div>

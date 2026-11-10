@@ -25,7 +25,11 @@ export default function Projects() {
             const label = `${String(i + 1).padStart(2, '0')} · ${p.category}`;
             return (
               <article key={p.title} className="project-card">
-                <div className={`project-media${hasImages ? ' has-image' : ''}`} style={{ '--c': p.color }}>
+                <div
+                  className={`project-media${hasImages ? ' has-image' : ''}`}
+                  style={{ '--c': p.color }}
+                  data-cursor={hasImages ? 'Browse' : undefined}
+                >
                   {hasImages ? (
                     <ProjectGallery images={p.images} name={name} label={label} />
                   ) : (
@@ -58,6 +62,7 @@ export default function Projects() {
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-cursor={p.isLiveUrl ? 'View Project' : 'View Code'}
                     aria-label={`${p.isLiveUrl ? 'Visit' : 'View code for'} ${p.title}`}
                   >
                     <Icon name="arrow" size={18} />
